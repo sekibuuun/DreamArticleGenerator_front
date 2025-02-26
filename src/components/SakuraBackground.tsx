@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { Petal } from './Petal'
+import { Petal } from '../lib/Petal'
 
 export function SakuraBackground() {
 	const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -28,10 +28,10 @@ export function SakuraBackground() {
 		let animationFrameId: number
 		const animate = () => {
 			ctx.clearRect(0, 0, canvas.width, canvas.height)
-			petals.forEach((petal) => {
+			for (const petal of petals) {
 				petal.update(canvas.width, canvas.height)
 				petal.draw(ctx)
-			})
+			}
 			animationFrameId = requestAnimationFrame(animate)
 		}
 		animate()
