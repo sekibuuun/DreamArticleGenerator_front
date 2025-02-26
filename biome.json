@@ -1,42 +1,43 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.5.2/schema.json",
-  "files": {
-    "ignore": ["public"]
-  },
-  "organizeImports": {
-    "enabled": true
-  },
-  "javascript": {
-    "formatter": {
-      "quoteStyle": "single",
-      "semicolons": "asNeeded",
+	"$schema": "https://biomejs.dev/schemas/1.5.2/schema.json",
+	"files": {
+		"ignore": ["public"],
+		"include": ["src/**/*.{ts,tsx}"]
+	},
+	"organizeImports": {
+		"enabled": true
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single",
+			"semicolons": "asNeeded",
 			"indentWidth": 2
-    }
-  },
-  "linter": {
-    "rules": {
-      "correctness": {
-        "noNodejsModules": "error"
-      }
-    }
-  },
-  "overrides": [
-    {
-      "include": [
-        "next.config.js",
-        "layout.tsx",
-        "page.tsx",
-        "loading.tsx",
-        "error.tsx",
-        "not-found.tsx"
-      ],
-      "linter": {
-        "rules": {
-          "style": {
-            "noDefaultExport": "off"
-          }
-        }
-      }
-    }
-  ]
+		}
+	},
+	"linter": {
+		"rules": {
+			"correctness": {
+				"noNodejsModules": "error"
+			}
+		}
+	},
+	"overrides": [
+		{
+			"include": [
+				"next.config.js",
+				"layout.tsx",
+				"page.tsx",
+				"loading.tsx",
+				"error.tsx",
+				"not-found.tsx"
+			],
+			"linter": {
+				"rules": {
+					"style": {
+						"noDefaultExport": "off"
+					}
+				}
+			}
+		}
+	]
 }
