@@ -1,4 +1,4 @@
-import { SakuraBackground } from '@/components/ui/SakuraBackground'
+import { SakuraBackground } from '@/components/SakuraBackground'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
