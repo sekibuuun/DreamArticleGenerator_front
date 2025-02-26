@@ -2,10 +2,10 @@ pre-commit:
   commands:
     check:
       glob: "src/**/*.{ts,tsx}"
-      run: npx biome check --apply --no-errors-on-unmatched --files-ignore-unknown=true <files> && git update-index --again
+      run: npx @biomejs/biome check --write
 
 pre-push:
   commands:
     check:
       glob: "src/**/*.{ts,tsx}"
-      run: npx biome check --no-errors-on-unmatched --files-ignore-unknown=true <files>
+      run: npx @biomejs/biome check --write
