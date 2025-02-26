@@ -1,10 +1,13 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 export const useChat = () => {
 	const [messages, setMessages] = useState<
 		{ id: string; content: string; role: 'user' | 'assistant' }[]
 	>([])
 	const [input, setInput] = useState('')
+	const messagesEndRef = useRef<HTMLDivElement>(null)
+	const [isSubmitting, setIsSubmitting] = useState(false)
+	const containerRef = useRef<HTMLDivElement>(null)
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setInput(e.target.value)
@@ -28,5 +31,34 @@ export const useChat = () => {
 		setInput('')
 	}
 
-	return { messages, input, handleInputChange, handleSubmit }
+	const scrollToBottom = useCallback(() => {
+		messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+	}, [])
+
+	useEffect(() => {
+		scrollToBottom()
+	}, [scrollToBottom])
+
+	// フォーム送信時の処理
+	const onSubmit = async (e: React.FormEvent) => {
+		e.preventDefault()
+		if (!input.trim() || isSubmitting) return
+
+		setIsSubmitting(true)
+		try {
+			await handleSubmit(e)
+		} finally {
+			setIsSubmitting(false)
+		}
+	}
+
+	return {
+		messages,
+		input,
+		handleInputChange,
+		containerRef,
+		messagesEndRef,
+		onSubmit,
+		isSubmitting,
+	}
 }

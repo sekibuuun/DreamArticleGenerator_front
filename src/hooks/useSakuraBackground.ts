@@ -1,7 +1,7 @@
+import { Petal } from '@/lib/Petal'
 import { useEffect, useRef } from 'react'
-import { Petal } from './Petal'
 
-export function SakuraBackground() {
+export const useSakuraBackground = () => {
 	const canvasRef = useRef<HTMLCanvasElement>(null)
 
 	useEffect(() => {
@@ -28,10 +28,10 @@ export function SakuraBackground() {
 		let animationFrameId: number
 		const animate = () => {
 			ctx.clearRect(0, 0, canvas.width, canvas.height)
-			petals.forEach((petal) => {
+			for (const petal of petals) {
 				petal.update(canvas.width, canvas.height)
 				petal.draw(ctx)
-			})
+			}
 			animationFrameId = requestAnimationFrame(animate)
 		}
 		animate()
@@ -43,11 +43,5 @@ export function SakuraBackground() {
 		}
 	}, [])
 
-	return (
-		<canvas
-			ref={canvasRef}
-			className="fixed inset-0 pointer-events-none"
-			style={{ zIndex: 0 }}
-		/>
-	)
+	return { canvasRef }
 }
