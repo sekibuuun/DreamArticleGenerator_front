@@ -1,8 +1,8 @@
 {
 	"$schema": "https://biomejs.dev/schemas/1.5.2/schema.json",
 	"files": {
-		"ignore": ["public"],
-		"include": ["src/**/*.{ts,tsx}"]
+		"ignore": ["public", "src/main.tsx"],
+		"include": ["src/**/*.tsx", "src/**/*.ts"]
 	},
 	"organizeImports": {
 		"enabled": true
