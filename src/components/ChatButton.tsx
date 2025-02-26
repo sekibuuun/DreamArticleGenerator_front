@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useChatButton } from '@/hooks/useChatButton'
 
 export const ChatButton = () => {
-	const [isHovered, setIsHovered] = useState(false)
+	const { isHovered, setIsHovered } = useChatButton()
 
 	return (
 		<a href="/chat">

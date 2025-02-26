@@ -5,35 +5,17 @@ import { Input } from '@/components/ui/input'
 import { useChat } from '@/hooks/useChat'
 import { cn } from '@/lib/utils'
 import { Send } from 'lucide-react'
-import type React from 'react'
-import { useCallback, useEffect, useRef, useState } from 'react'
 
 export default function Chat() {
-	const { messages, input, handleInputChange, handleSubmit } = useChat()
-	const messagesEndRef = useRef<HTMLDivElement>(null)
-	const [isSubmitting, setIsSubmitting] = useState(false)
-	const containerRef = useRef<HTMLDivElement>(null)
-
-	const scrollToBottom = useCallback(() => {
-		messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-	}, [])
-
-	useEffect(() => {
-		scrollToBottom()
-	}, [scrollToBottom])
-
-	// フォーム送信時の処理
-	const onSubmit = async (e: React.FormEvent) => {
-		e.preventDefault()
-		if (!input.trim() || isSubmitting) return
-
-		setIsSubmitting(true)
-		try {
-			await handleSubmit(e)
-		} finally {
-			setIsSubmitting(false)
-		}
-	}
+	const {
+		messages,
+		input,
+		handleInputChange,
+		containerRef,
+		messagesEndRef,
+		onSubmit,
+		isSubmitting,
+	} = useChat()
 
 	return (
 		<div className="relative min-h-screen bg-gradient-to-b from-pink-50 to-white overflow-hidden">
