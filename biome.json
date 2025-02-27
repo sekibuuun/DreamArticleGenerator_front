@@ -17,7 +17,8 @@
 	"linter": {
 		"rules": {
 			"correctness": {
-				"noNodejsModules": "error"
+				"noNodejsModules": "error",
+				"useExhaustiveDependencies": "off"
 			},
 			"a11y": {
 				"noSvgWithoutTitle": "off"
