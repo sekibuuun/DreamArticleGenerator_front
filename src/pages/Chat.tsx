@@ -1,3 +1,4 @@
+import { JudgeButton } from '@/components/JudgeButton'
 import { MessageBubble } from '@/components/MessageBubble'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -15,6 +16,9 @@ export const Chat = () => {
 		messagesEndRef,
 		onSubmit,
 		isSubmitting,
+		showGenerateButton,
+		handleGenerateArticle,
+		handleGenerateAndCloseModal,
 	} = useChat()
 
 	return (
@@ -92,6 +96,13 @@ export const Chat = () => {
 						</div>
 					</form>
 				</Card>
+
+				{/* 記事生成ボタン */}
+				<JudgeButton
+					isVisible={showGenerateButton}
+					onGenerateArticle={handleGenerateArticle}
+					onClose={handleGenerateAndCloseModal}
+				/>
 			</div>
 		</div>
 	)
