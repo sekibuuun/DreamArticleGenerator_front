@@ -54,7 +54,7 @@ export const Chat = () => {
 						{/* 実際のメッセージ表示 */}
 						{messages.map((m, i) => (
 							<MessageBubble
-								key={m.id}
+								key={i}
 								message={m.content}
 								role={m.role}
 								className={cn('animate-message-in', getDelayClass(i))}
