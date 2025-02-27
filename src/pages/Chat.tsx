@@ -1,13 +1,12 @@
+import { JudgeButton } from '@/components/JudgeButton'
 import { MessageBubble } from '@/components/MessageBubble'
 import { SakuraBackground } from '@/components/SakuraBackground'
-import { JudgeButton } from '@/components/jugde-button'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { useChat } from '@/hooks/useChat'
 import { cn, getDelayClass } from '@/lib/utils'
 import { Send } from 'lucide-react'
-import { useEffect } from 'react'
 
 export const Chat = () => {
 	const {
@@ -20,13 +19,8 @@ export const Chat = () => {
 		isSubmitting,
 		showGenerateButton,
 		handleGenerateArticle,
+		handleGenerateAndCloseModal,
 	} = useChat()
-
-	// デバッグ用のuseEffect
-	useEffect(() => {
-		console.log('Current showGenerateButton:', showGenerateButton)
-		console.log('Current messages:', messages.length)
-	}, [showGenerateButton, messages])
 
 	return (
 		<div className="relative min-h-screen bg-gradient-to-b from-pink-50 to-white overflow-hidden">
@@ -110,6 +104,7 @@ export const Chat = () => {
 				<JudgeButton
 					isVisible={showGenerateButton}
 					onGenerateArticle={handleGenerateArticle}
+					onClose={handleGenerateAndCloseModal}
 				/>
 			</div>
 		</div>

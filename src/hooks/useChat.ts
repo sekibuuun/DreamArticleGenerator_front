@@ -17,6 +17,7 @@ export const useChat = () => {
 	const containerRef = useRef<HTMLDivElement>(null)
 	const [showGenerateButton, setShowGenerateButton] = useState(false)
 	const userMessageCountRef = useRef(0)
+	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setInput(e.target.value)
@@ -84,6 +85,11 @@ export const useChat = () => {
 		setShowGenerateButton(false)
 	}
 
+	const handleGenerateAndCloseModal = () => {
+		handleGenerateArticle()
+		setIsModalOpen(false)
+	}
+
 	return {
 		messages,
 		input,
@@ -94,5 +100,7 @@ export const useChat = () => {
 		isSubmitting,
 		showGenerateButton,
 		handleGenerateArticle,
+		handleGenerateAndCloseModal,
+		isModalOpen,
 	}
 }
