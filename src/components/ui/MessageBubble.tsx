@@ -1,17 +1,12 @@
 import { cn } from '@/lib/utils';
+import { MessageBubbleProps } from '@/types/index';
 
-export interface MessageBubbleProps {
-  message: string;
-  role: 'user' | 'assistant';
-  className?: string;
-}
 
 export const MessageBubble = ({ 
   message, 
   role,
   className
-}: MessageBubbleProps) => {
-  return (
+}: MessageBubbleProps) => (
     <div
       className={cn(
         'flex mb-4',
@@ -33,4 +28,3 @@ export const MessageBubble = ({
       </div>
     </div>
   );
-};
