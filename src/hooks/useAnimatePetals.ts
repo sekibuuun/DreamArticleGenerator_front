@@ -1,6 +1,6 @@
 import { PETAL_CONSTANTS } from '@/constants'
+import { animaitionPetalsStyle } from '@/lib/customAnimation'
 import { getRandomInRange } from '@/lib/utils'
-import { animaitionPetalsStyle } from '@/styles/customAnimation'
 import type { AnimatedPetalsProps, Petal } from '@/types/index'
 import { useEffect, useState } from 'react'
 
