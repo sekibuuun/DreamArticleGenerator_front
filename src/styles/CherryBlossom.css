@@ -1,0 +1,86 @@
+/* 桜のアニメーションスタイル */
+
+/* 木の揺れるアニメーション */
+@keyframes sway-tree {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(var(--sway-angle, 0.5deg)); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(calc(var(--sway-angle, 0.5deg) * -0.7)); }
+  100% { transform: rotate(0deg); }
+}
+
+/* 花びらの揺れるアニメーション */
+@keyframes flutter {
+  0% { transform: rotate(0deg) translateY(0); }
+  33% { transform: rotate(10deg) translateY(-5px); }
+  66% { transform: rotate(-8deg) translateY(5px); }
+  100% { transform: rotate(0deg) translateY(0); }
+}
+
+/* 花びらが落ちるアニメーション */
+@keyframes fall-realistic {
+  0% { 
+    transform: translateY(0) rotate(0deg); 
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(50vh) rotate(180deg);
+    opacity: 0.9;
+  }
+  100% { 
+    transform: translateY(100vh) rotate(360deg); 
+    opacity: 0;
+  }
+}
+
+/* 風で横に揺れるアニメーション */
+@keyframes drift {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(20px); }
+  100% { transform: translateX(0); }
+}
+
+/* 木の部分の基本アニメーション */
+.tree-part {
+  animation: sway-tree 10s ease-in-out infinite;
+}
+
+/* 各木の部分ごとの個別設定 */
+.tree-part:nth-of-type(1) {
+  --sway-angle: 0.3deg;
+  transform-origin: center 1000px;
+}
+
+.tree-part:nth-of-type(2) {
+  --sway-angle: 0.8deg;
+  transform-origin: 400px 250px;
+}
+
+.tree-part:nth-of-type(3) {
+  --sway-angle: 0.7deg;
+  transform-origin: 750px 250px;
+}
+
+.tree-part:nth-of-type(4) {
+  --sway-angle: 1deg;
+  transform-origin: 300px 250px;
+}
+
+.tree-part:nth-of-type(5) {
+  --sway-angle: 1deg;
+  transform-origin: 900px 250px;
+}
+
+/* 花びらの落下アニメーション用クラス */
+.falling-petal {
+  animation-duration: var(--fall-duration, 15s);
+  animation-delay: var(--fall-delay, 0s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-name: fall-realistic, drift;
+}
+
+/* 前景の花びら用スタイル */
+.foreground-petal {
+  filter: drop-shadow(0px 3px 3px rgba(252, 165, 165, 0.5));
+}

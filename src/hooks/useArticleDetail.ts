@@ -1,14 +1,6 @@
+import type { Article } from '@/types/index'
 import { useEffect, useState } from 'react'
 import articlesData from '../data/articles.json'
-
-// 記事の型定義
-export type Article = {
-	id: string
-	title: string
-	content: string
-	author: string
-	createdAt: string
-}
 
 export const useArticleDetail = (id: string | undefined) => {
 	const [article, setArticle] = useState<Article | null>(null)

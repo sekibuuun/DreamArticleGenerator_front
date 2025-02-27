@@ -51,6 +51,11 @@ export const useChat = () => {
 			setIsSubmitting(false)
 		}
 	}
+	useEffect(() => {
+		if (messages.length > 0) {
+			messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+		}
+	}, [messages, messagesEndRef])
 
 	return {
 		messages,

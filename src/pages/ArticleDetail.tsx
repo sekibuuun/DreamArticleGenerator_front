@@ -14,7 +14,7 @@ export const ArticleDetail = () => {
 	if (loading) {
 		return (
 			<div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-pink-50 to-white">
-				<div className="text-pink-500">読み込み中...</div>
+				<p className="text-pink-500">読み込み中...</p>
 			</div>
 		)
 	}

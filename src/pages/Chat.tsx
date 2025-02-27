@@ -1,11 +1,10 @@
-import CherryBlossomBg from '@/assets/CherryBlossomBg.svg'
+import { MessageBubble } from '@/components/MessageBubble'
 import { SakuraBackground } from '@/components/SakuraBackground'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { useChat } from '@/hooks/useChat'
-import { cn } from '@/lib/utils'
-import { getDelayClass } from '@/lib/utils'
+import { cn, getDelayClass } from '@/lib/utils'
 import { Send } from 'lucide-react'
 
 export const Chat = () => {
@@ -43,45 +42,22 @@ export const Chat = () => {
 
 				{/* チャットカード */}
 				<Card className="relative min-h-[70vh] p-6 bg-white/80 backdrop-blur-md border-pink-50 shadow-lg rounded-2xl">
-					{/* メッセージエリア */}
-					<div className="space-y-6 mb-20">
+					{/* メッセージエリア - 固定高さとスクロールを追加 */}
+					<div
+						className="space-y-6 mb-20 overflow-y-auto max-h-[60vh] pr-2 scroll-smooth"
+						role="log"
+						aria-label="チャットメッセージ"
+					>
+						{/* 実際のメッセージ表示 */}
 						{messages.map((m, i) => (
-							<div
+							<MessageBubble
 								key={m.id}
-								className={cn(
-									'opacity-0 animate-message-in',
-									m.role === 'user' ? 'text-right' : 'text-left',
-									getDelayClass(i),
-								)}
-							>
-								<div
-									className={cn(
-										'inline-block max-w-[80%] relative group',
-										m.role === 'user' ? 'message-user' : 'message-ai',
-									)}
-								>
-									<div className="absolute -inset-2 bg-gradient-to-r from-pink-100/0 via-pink-100/30 to-pink-100/0 rounded-full blur-md group-hover:via-pink-200/30 transition-all duration-500" />
-
-									<div
-										className={cn(
-											'relative px-4 py-2 rounded-2xl break-words',
-											m.role === 'user'
-												? 'bg-gradient-to-br from-pink-400 to-pink-500 text-white'
-												: 'bg-white text-gray-800 border border-pink-100',
-										)}
-									>
-										{m.content}
-									</div>
-
-									{/* 装飾的な花びら */}
-									{m.role === 'assistant' && (
-										<div className="absolute -left-3 -top-3 w-6 h-6 opacity-70">
-											<CherryBlossomBg />
-										</div>
-									)}
-								</div>
-							</div>
+								message={m.content}
+								role={m.role}
+								className={cn('animate-message-in', getDelayClass(i))}
+							/>
 						))}
+						{/* スクロール位置をここに設定 */}
 						<div ref={messagesEndRef} />
 					</div>
 
@@ -89,6 +65,7 @@ export const Chat = () => {
 					<form
 						onSubmit={onSubmit}
 						className="absolute bottom-4 left-4 right-4"
+						aria-label="メッセージ入力フォーム"
 					>
 						<div className="relative flex gap-2">
 							<div className="relative flex-1">
@@ -98,6 +75,7 @@ export const Chat = () => {
 									onChange={handleInputChange}
 									placeholder="桜舞う季節のように、想いを綴ってください..."
 									className="relative bg-white/80 border-pink-100 focus:ring-pink-300 rounded-full py-6 px-6 placeholder:text-pink-300"
+									aria-label="メッセージを入力"
 								/>
 							</div>
 
@@ -110,8 +88,9 @@ export const Chat = () => {
 									'after:absolute after:inset-0 after:bg-gradient-to-br after:from-pink-300 after:to-pink-400 after:rounded-full after:blur-md after:-z-10',
 									isSubmitting && 'animate-pulse',
 								)}
+								aria-label="メッセージを送信"
 							>
-								<Send className="h-5 w-5" />
+								<Send className="h-5 w-5" aria-hidden="true" />
 							</Button>
 						</div>
 					</form>

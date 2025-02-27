@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- メインの桜のグラデーション -->
+    <radialGradient
+      id="cherry-gradient-1"
+      cx="50%"
+      cy="50%"
+      r="50%"
+      fx="40%"
+      fy="40%"
+    >
+      <stop offset="0%" stopColor="#FECDD3" stopOpacity="0.9" />
+      <stop offset="40%" stopColor="#FBCFE8" stopOpacity="0.7" />
+      <stop offset="70%" stopColor="#FCE7F3" stopOpacity="0.5" />
+      <stop offset="100%" stopColor="#FDF2F8" stopOpacity="0" />
+    </radialGradient>
+
+    <!-- 中心部の桜の色 -->
+    <radialGradient
+      id="cherry-center"
+      cx="50%"
+      cy="50%"
+      r="50%"
+      fx="50%"
+      fy="50%"
+    >
+      <stop offset="0%" stopColor="#FCA5A5" />
+      <stop offset="30%" stopColor="#FECACA" />
+      <stop offset="100%" stopColor="#FEE2E2" />
+    </radialGradient>
+
+    <!-- 木の幹のテクスチャ -->
+    <linearGradient id="trunk-texture" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stopColor="#5D4037" />
+      <stop offset="20%" stopColor="#6D4C41" />
+      <stop offset="40%" stopColor="#5D4037" />
+      <stop offset="60%" stopColor="#4E342E" />
+      <stop offset="80%" stopColor="#5D4037" />
+      <stop offset="100%" stopColor="#6D4C41" />
+    </linearGradient>
+
+    <!-- 木の枝のテクスチャ -->
+    <linearGradient id="branch-texture" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stopColor="#6D4C41" />
+      <stop offset="30%" stopColor="#5D4037" />
+      <stop offset="70%" stopColor="#6D4C41" />
+      <stop offset="100%" stopColor="#5D4037" />
+    </linearGradient>
+
+    <!-- 桜の花びらのパターン -->
+    <pattern
+      id="bark-pattern"
+      patternUnits="userSpaceOnUse"
+      width="50"
+      height="50"
+    >
+      <path
+        d="M0,0 L10,10 L0,20 L10,30 L0,40 L10,50 L20,40 L30,50 L40,40 L50,50 L40,30 L50,20 L40,10 L50,0 L40,10 L30,0 L20,10 L10,0 Z"
+        fill="#4E342E"
+        opacity="0.3"
+      />
+    </pattern>
+
+    <!-- 花びらの形状を定義 -->
+    <symbol id="petal" viewBox="0 0 24 24">
+      <path d="M12,2 C15,5 18,6 21,5 C22,12 20,16 12,22 C4,16 2,12 3,5 C6,6 9,5 12,2 Z" />
+    </symbol>
+
+    <!-- リアルな花びらの形状 -->
+    <symbol id="realistic-petal" viewBox="0 0 30 30">
+      <path
+        d="M15,2 C18,5 23,6 26,4 C27,13 23,20 15,28 C7,20 3,13 4,4 C7,6 12,5 15,2 Z"
+        strokeWidth="0.5"
+        stroke="#FECDD3"
+      />
+    </symbol>
+
+    <!-- 風の効果フィルター -->
+    <filter id="wind-filter" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.01"
+        numOctaves="3"
+        seed="3"
+        result="turbulence"
+      />
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="turbulence"
+        scale="15"
+        xChannelSelector="R"
+        yChannelSelector="G"
+      />
+    </filter>
+
+    <!-- 木の質感フィルター -->
+    <filter id="trunk-texture-filter">
+      <feTurbulence
+        type="turbulence"
+        baseFrequency="0.05"
+        numOctaves="2"
+        seed="5"
+        result="noise"
+      />
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="noise"
+        scale="2"
+        xChannelSelector="R"
+        yChannelSelector="G"
+      />
+    </filter>
+  </defs>
+
+  <!-- 空の背景 -->
+  <rect width="1200" height="1000" fill="#FDF2F8" opacity="0.5" />
+
+  <!-- 桜の木の幹 - メイン -->
+  <g class="tree-part">
+    <path
+      d="M580,1000 Q570,800 550,700 Q520,600 500,550 Q480,500 450,400 Q420,300 400,200 Q380,100 400,50 Q420,0 450,20 Q480,40 500,100 Q520,160 550,300 Q580,440 600,550 Q620,440 650,300 Q680,160 700,100 Q720,40 750,20 Q780,0 800,50 Q820,100 800,200 Q780,300 750,400 Q720,500 700,550 Q680,600 650,700 Q630,800 620,1000 Z"
+      fill="url(#trunk-texture)"
+      filter="url(#trunk-texture-filter)"
+    />
+
+    <!-- 木の幹の質感 -->
+    <path
+      d="M580,1000 Q570,800 550,700 Q520,600 500,550 Q480,500 450,400 Q420,300 400,200 Q380,100 400,50 Q420,0 450,20 Q480,40 500,100 Q520,160 550,300 Q580,440 600,550 Q620,440 650,300 Q680,160 700,100 Q720,40 750,20 Q780,0 800,50 Q820,100 800,200 Q780,300 750,400 Q720,500 700,550 Q680,600 650,700 Q630,800 620,1000 Z"
+      fill="url(#bark-pattern)"
+      opacity="0.4"
+    />
+  </g>
+
+  <!-- 桜の木の枝 - 左側 -->
+  <g class="tree-part">
+    <path
+      d="M450,250 Q400,200 350,180 Q300,160 250,200 Q200,240 220,280 Q240,320 300,340 Q360,360 450,250 Z"
+      fill="url(#branch-texture)"
+      filter="url(#trunk-texture-filter)"
+    />
+
+    <!-- 左側の小枝1 -->
+    <path
+      d="M320,210 Q290,190 260,200 Q230,210 210,240 Q200,270 230,290 Q260,310 320,290 Z"
+      fill="url(#branch-texture)"
+      filter="url(#trunk-texture-filter)"
+      opacity="0.9"
+    />
+
+    <!-- 左側の小枝2 -->
+    <path
+      d="M280,270 Q250,260 210,280 Q180,300 190,330 Q210,360 260,350 Q300,340 330,300 Z"
+      fill="url(#branch-texture)"
+      filter="url(#trunk-texture-filter)"
+      opacity="0.9"
+    />
+
+    <!-- 樹皮のテクスチャ - 左枝 -->
+    <path
+      d="M450,250 Q400,200 350,180 Q300,160 250,200 Q200,240 220,280 Q240,320 300,340 Q360,360 450,250 Z"
+      fill="url(#bark-pattern)"
+      opacity="0.3"
+    />
+  </g>
+
+  <!-- 桜の木の枝 - 右側 -->
+  <g class="tree-part">
+    <path
+      d="M750,250 Q800,200 850,180 Q900,160 950,200 Q1000,240 980,280 Q960,320 900,340 Q840,360 750,250 Z"
+      fill="url(#branch-texture)"
+      filter="url(#trunk-texture-filter)"
+    />
+
+    <!-- 右側の小枝1 -->
+    <path
+      d="M880,210 Q910,190 940,200 Q970,220 980,250 Q970,280 940,290 Q890,300 840,270 Z"
+      fill="url(#branch-texture)"
+      filter="url(#trunk-texture-filter)"
+      opacity="0.9"
+    />
+
+    <!-- 右側の小枝2 -->
+    <path
+      d="M920,270 Q950,260 990,280 Q1020,300 1010,330 Q990,360 940,350 Q900,340 870,300 Z"
+      fill="url(#branch-texture)"
+      filter="url(#trunk-texture-filter)"
+      opacity="0.9"
+    />
+
+    <!-- 樹皮のテクスチャ - 右枝 -->
+    <path
+      d="M750,250 Q800,200 850,180 Q900,160 950,200 Q1000,240 980,280 Q960,320 900,340 Q840,360 750,250 Z"
+      fill="url(#bark-pattern)"
+      opacity="0.3"
+    />
+  </g>
+
+  <!-- 桜の花の集まり - 左側の枝 -->
+  <g class="tree-part">
+    <!-- 花の部分は動的に生成するためCSSのみとする -->
+  </g>
+
+  <!-- 桜の花の集まり - 右側の枝 -->
+  <g class="tree-part">
+    <!-- 花の部分は動的に生成するためCSSのみとする -->
+  </g>
+
+  <!-- 散り桜と前景の花びらはReactで動的に生成する -->
+</svg>
