@@ -1,5 +1,5 @@
+import type { Article } from '@/types/index'
 import { useEffect, useState } from 'react'
-import type { Article } from '../types'
 
 export const useArticles = (): {
 	articles: Article[]
@@ -13,7 +13,7 @@ export const useArticles = (): {
 	useEffect(() => {
 		const fetchArticles = async () => {
 			try {
-				const response = await fetch('/src/data/article.json')
+				const response = await fetch('/src/data/articlesDetail.json')
 
 				if (!response.ok) {
 					throw new Error(`データの取得に失敗しました: ${response.status}`)
