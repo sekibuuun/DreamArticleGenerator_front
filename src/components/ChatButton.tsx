@@ -1,10 +1,11 @@
 import { useChatButton } from '@/hooks/useChatButton'
+import { Link } from 'react-router'
 
 export const ChatButton = () => {
 	const { isHovered, setIsHovered } = useChatButton()
 
 	return (
-		<a href="/chat">
+		<Link to="/chat">
 			<div
 				className="fixed bottom-8 right-8 flex items-center justify-center"
 				onMouseEnter={() => setIsHovered(true)}
@@ -38,6 +39,6 @@ export const ChatButton = () => {
 					</div>
 				)}
 			</div>
-		</a>
+		</Link>
 	)
 }
