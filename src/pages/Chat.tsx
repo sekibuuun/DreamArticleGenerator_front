@@ -22,7 +22,6 @@ export const Chat = () => {
 		handleGenerateArticle,
 		handleGenerateAndCloseModal,
 	} = useChat(chatId) // Pass the chatId to the hook
-	console.log(chatId)
 
 	return (
 		<div className="relative min-h-screen bg-gradient-to-b from-pink-50 to-white overflow-hidden">
