@@ -1,10 +1,9 @@
-import { useArticlePetal } from '@/hooks/useArticlePetal'
+import { useArticleLists } from '@/hooks/useArticleLists'
 import { formatDate } from '@/lib/utils'
-import type { ArticlePetalProps } from '@/types/index'
+import type { ArticleListsProps } from '@/types/index'
 
-export const ArticlePetal = ({ id, article, index }: ArticlePetalProps) => {
-	// 各カードごとに独自のホバー状態を管理
-	const { isHovered, setIsHovered } = useArticlePetal()
+export const ArticleLists = ({ id, article, index }: ArticleListsProps) => {
+	const { isHovered, setIsHovered } = useArticleLists()
 	const delayClass = `delay-${index * 100}`
 
 	return (

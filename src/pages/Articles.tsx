@@ -1,5 +1,5 @@
 import { AnimatedPetals } from '@/components/AnimatedPetals'
-import { ArticlePetal } from '@/components/ArticlePetal'
+import { ArticleLists } from '@/components/ArticleLists'
 import { CherryBlossom } from '@/components/CherryBlossom'
 import { useArticles } from '@/hooks/useArticles'
 import { useScrollToTop } from '@/hooks/useScrollToTop'
@@ -55,7 +55,7 @@ export function Articles(): React.ReactNode {
 				{!loading && !error && (
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 relative">
 						{articles.map((article, index) => (
-							<ArticlePetal id={article.id} article={article} index={index} />
+							<ArticleLists id={article.id} article={article} index={index} />
 						))}
 					</div>
 				)}

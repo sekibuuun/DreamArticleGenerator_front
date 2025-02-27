@@ -29,7 +29,7 @@ export type AnimatedPetalsProps = {
 	density: PetalDensity
 }
 
-export type ArticlePetalProps = {
+export type ArticleListsProps = {
 	id: number
 	article: Article
 	index: number
