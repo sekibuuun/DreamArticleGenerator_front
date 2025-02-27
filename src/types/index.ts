@@ -3,6 +3,8 @@ export type Article = {
 	title: string
 	excerpt: string
 	date: string
+	author?: string
+	readTime?: string
 }
 
 export type PetalDensity = 'low' | 'medium' | 'high'
