@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <radialGradient id="petal-gradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stopColor="#fff5f7" />
+      <stop offset="100%" stopColor="#fecdd3" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background Sky and Gradients -->
+  <rect width="1200" height="800" fill="#fff5f7" />
+  
+  <!-- Tree Branches -->
+  <path d="M600 800 Q 500 700, 450 500 Q 400 300, 500 200 Q 550 150, 600 180" fill="none" stroke="#8b4513" strokeWidth="5" />
+  <path d="M600 800 Q 700 700, 750 500 Q 800 300, 700 200 Q 650 150, 600 180" fill="none" stroke="#8b4513" strokeWidth="5" />
+  
+  <!-- Cherry Blossoms -->
+  <g>
+    <!-- Cluster 1 -->
+    <circle cx="500" cy="200" r="30" fill="url(#petal-gradient)" />
+    <circle cx="530" cy="220" r="25" fill="url(#petal-gradient)" />
+    <circle cx="480" cy="230" r="28" fill="url(#petal-gradient)" />
+    <circle cx="510" cy="250" r="22" fill="url(#petal-gradient)" />
+    <circle cx="470" cy="260" r="20" fill="url(#petal-gradient)" />
+    
+    <!-- Cluster 2 -->
+    <circle cx="700" cy="200" r="30" fill="url(#petal-gradient)" />
+    <circle cx="670" cy="220" r="25" fill="url(#petal-gradient)" />
+    <circle cx="720" cy="230" r="28" fill="url(#petal-gradient)" />
+    <circle cx="690" cy="250" r="22" fill="url(#petal-gradient)" />
+    <circle cx="730" cy="260" r="20" fill="url(#petal-gradient)" />
+    
+    <!-- Cluster 3 -->
+    <circle cx="450" cy="350" r="25" fill="url(#petal-gradient)" />
+    <circle cx="430" cy="380" r="20" fill="url(#petal-gradient)" />
+    <circle cx="470" cy="390" r="22" fill="url(#petal-gradient)" />
+    
+    <!-- Cluster 4 -->
+    <circle cx="750" cy="350" r="25" fill="url(#petal-gradient)" />
+    <circle cx="770" cy="380" r="20" fill="url(#petal-gradient)" />
+    <circle cx="730" cy="390" r="22" fill="url(#petal-gradient)" />
+    
+    <!-- Cluster 5 -->
+    <circle cx="570" cy="180" r="28" fill="url(#petal-gradient)" />
+    <circle cx="600" cy="160" r="30" fill="url(#petal-gradient)" />
+    <circle cx="630" cy="180" r="28" fill="url(#petal-gradient)" />
+  </g>
+</svg>

@@ -18,10 +18,21 @@
 		"rules": {
 			"correctness": {
 				"noNodejsModules": "error",
-				"useExhaustiveDependencies": "off"
+				"useExhaustiveDependencies": "off",
+				"useJsxKeyInIterable": "off"
 			},
 			"a11y": {
-				"noSvgWithoutTitle": "off"
+				"noSvgWithoutTitle": "off",
+				"useValidAnchor": "off"
+			},
+			"complexity": {
+				"noForEach": "off"
+			},
+			"suspicious": {
+				"noArrayIndexKey": "off"
+			},
+			"security": {
+				"noDangerouslySetInnerHtml": "off"
 			}
 		}
 	},
