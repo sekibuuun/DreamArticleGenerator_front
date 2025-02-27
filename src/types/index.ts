@@ -43,3 +43,8 @@ export type JudgeButtonProps = {
 	onGenerateArticle: () => void
 	onClose: () => void
 }
+
+export type ChatContextType = {
+	chatId: number | null
+	setChatId: (id: number) => void
+}
