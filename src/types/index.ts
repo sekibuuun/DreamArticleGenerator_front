@@ -53,3 +53,9 @@ export type UseChatButtonReturn = {
 	isHovered: boolean
 	setIsHovered: React.Dispatch<React.SetStateAction<boolean>>
 }
+
+export type Message = {
+	id: number
+	role: 'user' | 'assistant'
+	content: string
+}

@@ -1,43 +1,22 @@
 // useChat.ts
-import { useEffect, useRef, useState } from 'react'
-
-interface Message {
-	id: string
-	role: 'user' | 'assistant'
-	content: string
-}
+import type { Message } from '@/types'
+import { useRef, useState } from 'react'
 
 export const useChat = (chatId: number) => {
-	const [messages, setMessages] = useState<Message[]>([])
+	const initialMessages: Message[] = [
+		{
+			id: chatId,
+			content: 'こんにちは。あなたの夢はなんですか？',
+			role: 'assistant',
+		},
+	]
+	const [messages, setMessages] = useState<Message[]>(initialMessages)
 	const [input, setInput] = useState<string>('')
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
 	const [showGenerateButton, setShowGenerateButton] = useState<boolean>(false)
 
 	const containerRef = useRef<HTMLDivElement | null>(null)
 	const messagesEndRef = useRef<HTMLDivElement | null>(null)
-
-	// You can use the chatId for operations like loading existing messages
-	useEffect(() => {
-		if (chatId) {
-			// Load existing messages for this chat ID
-			// This is just an example - implement according to your API
-			const loadMessages = async () => {
-				try {
-					const response = await fetch(
-						`http://localhost:5000/api/chat/${chatId}/messages`,
-					)
-					if (response.ok) {
-						const data = await response.json()
-						setMessages(data.messages || [])
-					}
-				} catch (error) {
-					console.error('Failed to load messages:', error)
-				}
-			}
-
-			loadMessages()
-		}
-	}, [chatId])
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setInput(e.target.value)
@@ -51,9 +30,9 @@ export const useChat = (chatId: number) => {
 		setMessages((prev) => [
 			...prev,
 			{
-				id: Date.now().toString(),
-				role: 'assistant' as const, // asを使用して明示的に型を指定
-				content: 'test',
+				id: chatId,
+				role: 'user',
+				content: input,
 			},
 		])
 		setInput('')
@@ -61,16 +40,13 @@ export const useChat = (chatId: number) => {
 
 		try {
 			// Send message to API with the chatId
-			const response = await fetch(
-				`http://localhost:5000/api/chat/${chatId}/send`,
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({ message: input }),
+			const response = await fetch(`http://127.0.0.1:5000/api/chat/${chatId}`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
 				},
-			)
+				body: JSON.stringify({ message: input }),
+			})
 
 			if (!response.ok) {
 				throw new Error('Failed to send message')
@@ -82,16 +58,19 @@ export const useChat = (chatId: number) => {
 			setMessages((prev) => [
 				...prev,
 				{
-					id: Date.now().toString(),
+					id: chatId,
 					role: 'assistant',
 					content: data.response,
 				},
 			])
 
 			// Check if we should show the generate button (based on your logic)
-			if (messages.length >= 4) {
-				setShowGenerateButton(true)
-			}
+			setTimeout(() => {
+				// The original code that will be executed after 3 seconds
+				if (messages.length >= 4) {
+					setShowGenerateButton(true)
+				}
+			}, 3000)
 		} catch (error) {
 			console.error('Error sending message:', error)
 			// Handle error (maybe add an error message to the chat)
@@ -108,7 +87,7 @@ export const useChat = (chatId: number) => {
 		// Generate article using the chatId
 		try {
 			const response = await fetch(
-				`http://localhost:5000/api/chat/${chatId}/generate`,
+				`http://127.0.0.1:5000/api/chat/${chatId}/generate`,
 				{
 					method: 'POST',
 				},
