@@ -19,10 +19,6 @@ export const getOpacityClass = (baseDensity: PetalDensity): string => {
 	}
 }
 
-export const getRandomInRange = (min: number, max: number): number => {
-	return min + Math.random() * (max - min)
-}
-
 export const formatDate = (dateString: string): string => {
 	const date = new Date(dateString)
 	return date.toLocaleDateString('ja-JP', {

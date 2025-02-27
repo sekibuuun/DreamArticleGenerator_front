@@ -1,5 +1,4 @@
 import { MessageBubble } from '@/components/MessageBubble'
-import { SakuraBackground } from '@/components/SakuraBackground'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -20,8 +19,6 @@ export const Chat = () => {
 
 	return (
 		<div className="relative min-h-screen bg-gradient-to-b from-pink-50 to-white overflow-hidden">
-			<SakuraBackground />
-
 			<div ref={containerRef} className="relative max-w-4xl mx-auto p-4 pt-8">
 				{/* ヘッダー */}
 				<div className="relative text-center mb-8">

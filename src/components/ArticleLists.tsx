@@ -21,7 +21,7 @@ export const ArticleLists = ({ id, article, index }: ArticleListsProps) => {
 					{article.excerpt}
 				</p>
 				<div className="flex flex-wrap text-xs text-gray-500 mb-4">
-					<span className="mr-1">{formatDate(article.date)}</span>
+					<span className="mr-1">{formatDate(article.date as string)}</span>
 				</div>
 				<button
 					type="button"

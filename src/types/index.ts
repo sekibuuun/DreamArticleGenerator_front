@@ -32,11 +32,6 @@ export type Petal = {
 	petalType: number
 }
 
-export type AnimatedPetalsProps = {
-	count: number
-	density: PetalDensity
-}
-
 export type ArticleListsProps = {
 	id: number
 	article: Article
