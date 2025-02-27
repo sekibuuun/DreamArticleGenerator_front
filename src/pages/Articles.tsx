@@ -26,7 +26,7 @@ export function Articles(): React.ReactNode {
 				{/* シンプルなタイトル */}
 				<div className="text-center mb-12">
 					<h1 className="text-4xl md:text-5xl font-bold text-pink-800 relative inline-block">
-						桜物語
+						みんなの夢
 						<span className="absolute bottom-0 left-0 right-0 h-1 bg-pink-400 rounded-full" />
 					</h1>
 				</div>
@@ -55,7 +55,12 @@ export function Articles(): React.ReactNode {
 				{!loading && !error && (
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 relative">
 						{articles.map((article, index) => (
-							<ArticleLists id={article.id} article={article} index={index} />
+							<ArticleLists
+								key={article.id}
+								id={article.id}
+								article={article}
+								index={index}
+							/>
 						))}
 					</div>
 				)}
