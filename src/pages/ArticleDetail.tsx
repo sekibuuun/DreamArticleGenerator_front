@@ -5,7 +5,7 @@ import { useArticleDetail } from '@/hooks/useArticleDetail'
 import { ArrowLeft, Calendar, User } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import { useParams } from 'react-router'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 export const ArticleDetail = () => {
 	const { id } = useParams<{ id: string }>()
