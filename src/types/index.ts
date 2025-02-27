@@ -43,3 +43,13 @@ export type JudgeButtonProps = {
 	onGenerateArticle: () => void
 	onClose: () => void
 }
+
+export type ChatContextType = {
+	chatId: number
+	setChatId: (id: number) => void
+}
+
+export type UseChatButtonReturn = {
+	isHovered: boolean
+	setIsHovered: React.Dispatch<React.SetStateAction<boolean>>
+}

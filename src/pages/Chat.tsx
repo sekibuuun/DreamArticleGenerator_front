@@ -3,11 +3,13 @@ import { MessageBubble } from '@/components/MessageBubble'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
+import { useChatContext } from '@/context/ChatContext'
 import { useChat } from '@/hooks/useChat'
 import { cn, getDelayClass } from '@/lib/utils'
 import { Send } from 'lucide-react'
 
 export const Chat = () => {
+	const { chatId } = useChatContext()
 	const {
 		messages,
 		input,
@@ -19,7 +21,7 @@ export const Chat = () => {
 		showGenerateButton,
 		handleGenerateArticle,
 		handleGenerateAndCloseModal,
-	} = useChat()
+	} = useChat(chatId) // Pass the chatId to the hook
 
 	return (
 		<div className="relative min-h-screen bg-gradient-to-b from-pink-50 to-white overflow-hidden">

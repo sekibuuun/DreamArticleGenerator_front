@@ -23,7 +23,8 @@
 			},
 			"a11y": {
 				"noSvgWithoutTitle": "off",
-				"useValidAnchor": "off"
+				"useValidAnchor": "off",
+				"useKeyWithClickEvents": "off"
 			},
 			"complexity": {
 				"noForEach": "off"
