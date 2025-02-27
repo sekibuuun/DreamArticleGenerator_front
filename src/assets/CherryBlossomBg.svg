@@ -1,0 +1,9 @@
+<svg
+viewBox="0 0 100 100"
+className="w-full h-full text-pink-200 transform rotate-45"
+>
+	<path
+	d="M50,0 C60,40 90,50 100,50 C90,60 60,90 50,100 C40,90 10,60 0,50 C10,40 40,10 50,0"
+	fill="currentColor"
+	/>
+</svg>
