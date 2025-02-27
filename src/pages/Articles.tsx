@@ -58,7 +58,7 @@ export function Articles(): React.ReactNode {
 						{articles.map((article, index) => (
 							<ArticleLists
 								key={article.id}
-								id={article.id}
+								id={article.id as number}
 								article={article}
 								index={index}
 							/>
