@@ -6,7 +6,6 @@ import { Input } from '@/components/ui/input'
 import { useChat } from '@/hooks/useChat'
 import { cn, getDelayClass } from '@/lib/utils'
 import { Send } from 'lucide-react'
-import { useEffect } from 'react'
 
 export const Chat = () => {
 	const {
@@ -18,13 +17,6 @@ export const Chat = () => {
 		onSubmit,
 		isSubmitting,
 	} = useChat()
-
-	// 新しいメッセージが追加されたときに自動スクロールする
-	useEffect(() => {
-		if (messages.length > 0) {
-			messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-		}
-	}, [messages, messagesEndRef])
 
 	return (
 		<div className="relative min-h-screen bg-gradient-to-b from-pink-50 to-white overflow-hidden">
