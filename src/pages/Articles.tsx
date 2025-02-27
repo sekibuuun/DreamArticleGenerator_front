@@ -1,10 +1,9 @@
+import { AnimatedPetals } from '@/components/AnimatedPetals'
+import { ArticlePetal } from '@/components/ArticlePetal'
+import { CherryBlossom } from '@/components/CherryBlossom'
+import { useArticles } from '@/hooks/useArticles'
+import { useScrollToTop } from '@/hooks/useScrollToTop'
 import type React from 'react'
-import { DividerIcon } from '../assets/SocialIcons'
-import { AnimatedPetals } from '../components/AnimatedPetals'
-import { ArticlePetal } from '../components/ArticlePetal'
-import { CherryBlossom } from '../components/CherryBlossom'
-import { useArticles } from '../hooks/useArticles'
-import { useScrollToTop } from '../hooks/useScrollToTop'
 
 export function Articles(): React.ReactNode {
 	// カスタムフックを使用してデータとスクロール動作を取得
@@ -56,24 +55,8 @@ export function Articles(): React.ReactNode {
 				{!loading && !error && (
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 relative">
 						{articles.map((article, index) => (
-							<ArticlePetal
-								key={article.id}
-								article={article}
-								index={index}
-								className="transform transition-all duration-500 hover:-translate-y-2 hover:shadow-lg"
-							/>
+							<ArticlePetal id={article.id} article={article} index={index} />
 						))}
-					</div>
-				)}
-
-				{/* 和風の装飾的な区切り線 */}
-				{!loading && !error && (
-					<div className="mt-16 flex items-center justify-center">
-						<div className="w-16 h-px bg-pink-200" />
-						<div className="mx-4">
-							<DividerIcon />
-						</div>
-						<div className="w-16 h-px bg-pink-200" />
 					</div>
 				)}
 			</div>
