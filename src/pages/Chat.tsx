@@ -1,12 +1,14 @@
+import CherryBlossomBg from '@/assets/CherryBlossomBg.svg'
 import { SakuraBackground } from '@/components/SakuraBackground'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { useChat } from '@/hooks/useChat'
 import { cn } from '@/lib/utils'
+import { getDelayClass } from '@/lib/utils'
 import { Send } from 'lucide-react'
 
-export default function Chat() {
+export const Chat = () => {
 	const {
 		messages,
 		input,
@@ -29,14 +31,14 @@ export default function Chat() {
 						<div className="absolute inset-0 bg-gradient-to-r from-transparent via-pink-100/30 to-transparent h-px transform translate-y-1" />
 					</div>
 
-					<h1 className="relative inline-block px-8 py-2 bg-gradient-to-b from-white to-transparent">
+					<p className="relative inline-block px-8 py-2 bg-gradient-to-b from-white to-transparent">
 						<span className="block text-5xl font-bold text-pink-800 font-japanese mb-1">
 							夢について発信しよう
 						</span>
 						<span className="block text-sm tracking-widest text-pink-600/60 uppercase">
 							Dream Article Generator
 						</span>
-					</h1>
+					</p>
 				</div>
 
 				{/* チャットカード */}
@@ -49,10 +51,8 @@ export default function Chat() {
 								className={cn(
 									'opacity-0 animate-message-in',
 									m.role === 'user' ? 'text-right' : 'text-left',
+									getDelayClass(i),
 								)}
-								style={{
-									animationDelay: `${i * 0.1}s`,
-								}}
 							>
 								<div
 									className={cn(
@@ -76,15 +76,7 @@ export default function Chat() {
 									{/* 装飾的な花びら */}
 									{m.role === 'assistant' && (
 										<div className="absolute -left-3 -top-3 w-6 h-6 opacity-70">
-											<svg
-												viewBox="0 0 100 100"
-												className="w-full h-full text-pink-200 transform rotate-45"
-											>
-												<path
-													d="M50,0 C60,40 90,50 100,50 C90,60 60,90 50,100 C40,90 10,60 0,50 C10,40 40,10 50,0"
-													fill="currentColor"
-												/>
-											</svg>
+											<CherryBlossomBg />
 										</div>
 									)}
 								</div>
@@ -124,13 +116,6 @@ export default function Chat() {
 						</div>
 					</form>
 				</Card>
-
-				{/* フッター */}
-				<footer className="text-center mt-6 mb-4">
-					<p className="text-sm text-pink-600/40 font-japanese">
-						「春風に舞う花びらのように、心躍る会話を」
-					</p>
-				</footer>
 			</div>
 		</div>
 	)
