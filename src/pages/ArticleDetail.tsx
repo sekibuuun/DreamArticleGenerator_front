@@ -1,4 +1,3 @@
-import { SakuraBackground } from '@/components/SakuraBackground'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { useArticleDetail } from '@/hooks/useArticleDetail'
@@ -36,8 +35,6 @@ export const ArticleDetail = () => {
 
 	return (
 		<div className="relative min-h-screen bg-gradient-to-b from-pink-50 to-white">
-			<SakuraBackground />
-
 			<div className="container mx-auto px-4 py-8 max-w-4xl relative">
 				{/* 戻るボタン */}
 				<Link

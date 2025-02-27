@@ -1,4 +1,3 @@
-import { AnimatedPetals } from '@/components/AnimatedPetals'
 import { ArticleLists } from '@/components/ArticleLists'
 import { ChatButton } from '@/components/ChatButton'
 import { CherryBlossom } from '@/components/CherryBlossom'
@@ -11,17 +10,10 @@ export function Articles(): React.ReactNode {
 	const { articles, loading, error } = useArticles()
 	useScrollToTop()
 
-	// 花びらの密度設定（中程度）
-	const petalDensity = 'medium'
-
 	return (
 		<div className="min-h-screen bg-gradient-to-b from-pink-50 via-pink-50 to-white relative overflow-hidden">
 			{/* リアルな桜の木と背景 */}
 			<CherryBlossom />
-
-			{/* アニメーションする花びらエフェクト */}
-			<AnimatedPetals count={40} density={petalDensity} />
-
 			{/* メインコンテンツ */}
 			<div className="relative z-10 container mx-auto px-4 py-8">
 				{/* シンプルなタイトル */}
