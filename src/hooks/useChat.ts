@@ -7,7 +7,7 @@ interface Message {
 	content: string
 }
 
-export const useChat = (chatId?: number | null) => {
+export const useChat = (chatId: number) => {
 	const [messages, setMessages] = useState<Message[]>([])
 	const [input, setInput] = useState<string>('')
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false)

@@ -6,7 +6,7 @@ import { createContext, useContext, useState } from 'react'
 const ChatContext = createContext<ChatContextType | undefined>(undefined)
 
 export const ChatProvider = ({ children }: { children: ReactNode }) => {
-	const [chatId, setChatId] = useState<number | null>(null)
+	const [chatId, setChatId] = useState<number>(-1)
 
 	return (
 		<ChatContext.Provider value={{ chatId, setChatId }}>

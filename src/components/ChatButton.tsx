@@ -1,23 +1,10 @@
 import { useChatContext } from '@/context/ChatContext'
-// src/components/ChatButton.tsx
-import React from 'react'
+import { useChatButton } from '@/hooks/useChatButton'
+import type React from 'react'
 import { useNavigate } from 'react-router'
 
-// useChatButton フックの型定義
-interface UseChatButtonReturn {
-	isHovered: boolean
-	setIsHovered: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-// APIレスポンスの型定義
-interface ChatIdResponse {
-	chatId: string
-	// 他のAPI返却値がある場合は追加
-}
-
 export const ChatButton: React.FC = () => {
-	// useChatButton フックの正確な実装に合わせて型を調整してください
-	const { isHovered, setIsHovered } = useChatButton() as UseChatButtonReturn
+	const { isHovered, setIsHovered } = useChatButton()
 	const { setChatId } = useChatContext()
 	const navigate = useNavigate()
 
@@ -29,11 +16,10 @@ export const ChatButton: React.FC = () => {
 			if (!response.ok) {
 				throw new Error(`HTTP error! status: ${response.status}`)
 			}
-			const data = (await response.json()) as ChatIdResponse
-			console.log(data)
+			const data = (await response.json()) as { id: number }
 
 			// コンテキストにchatIdを保存
-			setChatId(Number(data.chatId))
+			setChatId(data.id)
 
 			// プログラムでチャットページに移動
 			navigate('/chat')
@@ -78,10 +64,4 @@ export const ChatButton: React.FC = () => {
 			)}
 		</div>
 	)
-}
-
-// useChatButton フックの実装例 (実際の実装に合わせて調整してください)
-function useChatButton(): UseChatButtonReturn {
-	const [isHovered, setIsHovered] = React.useState<boolean>(false)
-	return { isHovered, setIsHovered }
 }
