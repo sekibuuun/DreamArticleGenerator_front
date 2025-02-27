@@ -1,3 +1,9 @@
+export type MessageBubbleProps = {
+	message: string
+	role: 'user' | 'assistant'
+	className?: string
+}
+
 export type Article = {
 	id: number
 	title: string
