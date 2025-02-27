@@ -45,6 +45,11 @@ export type JudgeButtonProps = {
 }
 
 export type ChatContextType = {
-	chatId: number | null
+	chatId: number
 	setChatId: (id: number) => void
+}
+
+export type UseChatButtonReturn = {
+	isHovered: boolean
+	setIsHovered: React.Dispatch<React.SetStateAction<boolean>>
 }
