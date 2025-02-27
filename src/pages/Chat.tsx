@@ -1,5 +1,5 @@
+import { MessageBubble } from '@/components/MessageBubble'
 import { SakuraBackground } from '@/components/SakuraBackground'
-import { MessageBubble } from '@/components/ui/MessageBubble'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
