@@ -16,7 +16,7 @@ export function Articles(): React.ReactNode {
 	return (
 		<div className="min-h-screen bg-gradient-to-b from-pink-50 via-pink-50 to-white relative overflow-hidden">
 			{/* リアルな桜の木と背景 */}
-			<CherryBlossom className="fixed inset-0 w-full h-full object-cover pointer-events-none" />
+			<CherryBlossom />
 
 			{/* アニメーションする花びらエフェクト */}
 			<AnimatedPetals count={40} density={petalDensity} />

@@ -1,4 +1,4 @@
-import { animationAddPetal } from '@/styles/customAnimation'
+import { animationAddPetal } from '@/lib/customAnimation'
 import { useEffect } from 'react'
 
 export const useArticlePetal = () => {
