@@ -1,6 +1,9 @@
-import type React from 'react'
-import Articles from './pages/Articles'
+import { Router } from '@/routes/router'
 
-export default function App(): React.ReactNode {
-	return <Articles />
+export default function App() {
+	return (
+		<div>
+			<Router />
+		</div>
+	)
 }

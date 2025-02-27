@@ -1,5 +1,6 @@
 import { AnimatedPetals } from '@/components/AnimatedPetals'
 import { ArticleLists } from '@/components/ArticleLists'
+import { ChatButton } from '@/components/ChatButton'
 import { CherryBlossom } from '@/components/CherryBlossom'
 import { useArticles } from '@/hooks/useArticles'
 import { useScrollToTop } from '@/hooks/useScrollToTop'
@@ -65,8 +66,7 @@ export function Articles(): React.ReactNode {
 					</div>
 				)}
 			</div>
+			<ChatButton />
 		</div>
 	)
 }
-
-export default Articles
