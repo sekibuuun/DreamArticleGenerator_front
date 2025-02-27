@@ -7,7 +7,6 @@ export type Article = {
 	content: string
 	author: string
 	createdAt: string
-	readingTime: string
 }
 
 export const useArticleDetail = (id: string | undefined) => {
@@ -28,7 +27,6 @@ export const useArticleDetail = (id: string | undefined) => {
 					content: '',
 					author: '山田花子',
 					createdAt: '2024-03-15',
-					readingTime: '5分',
 				}
 
 				setArticle(mockArticle)
