@@ -16,9 +16,9 @@ export type Petal = {
 	speed: number
 	delay: number
 	opacity: number
-	pinkness: number
+	pinkness?: number
 	driftAmplitude: number
-	driftSpeed: number
+	driftSpeed?: number
 	petalType: number
 }
 
@@ -28,7 +28,7 @@ export type AnimatedPetalsProps = {
 }
 
 export type ArticlePetalProps = {
+	id: number
 	article: Article
 	index: number
-	className?: string
 }
