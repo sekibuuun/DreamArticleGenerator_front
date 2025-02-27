@@ -3,8 +3,8 @@ import { Card, CardContent } from '@/components/ui/card'
 import { useArticleDetail } from '@/hooks/useArticleDetail'
 import { ArrowLeft, Calendar, User } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
-import { useParams } from 'react-router'
-import { Link } from 'react-router'
+import { Link, useParams } from 'react-router'
+import remarkGfm from 'remark-gfm'
 
 export const ArticleDetail = () => {
 	const { id } = useParams<{ id: string }>()
@@ -69,7 +69,25 @@ export const ArticleDetail = () => {
 					{/* 記事内容 */}
 					<CardContent className="p-6 md:p-8">
 						<div className="prose prose-pink max-w-none">
-							<ReactMarkdown>{article.content}</ReactMarkdown>
+							<ReactMarkdown
+								remarkPlugins={[remarkGfm]}
+								components={{
+									h2: ({ ...props }) => (
+										<h2
+											className="text-2xl font-bold text-pink-700 mt-6 mb-4 border-b pb-2"
+											{...props}
+										/>
+									),
+									h3: ({ ...props }) => (
+										<h3
+											className="text-xl font-semibold text-pink-600 mt-4 mb-3"
+											{...props}
+										/>
+									),
+								}}
+							>
+								{article.content}
+							</ReactMarkdown>
 						</div>
 					</CardContent>
 				</Card>
