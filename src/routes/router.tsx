@@ -1,3 +1,4 @@
+import { ArticleDetail } from '@/pages/ArticleDetail'
 import { Articles } from '@/pages/Articles'
 import { Chat } from '@/pages/Chat'
 import { BrowserRouter, Route, Routes } from 'react-router'
@@ -8,6 +9,7 @@ export const Router = () => {
 			<Routes>
 				<Route path="/" element={<Articles />} />
 				<Route path="/chat" element={<Chat />} />
+				<Route path="/detail" element={<ArticleDetail />} />
 			</Routes>
 		</BrowserRouter>
 	)
