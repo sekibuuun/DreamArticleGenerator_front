@@ -5,12 +5,14 @@ export type MessageBubbleProps = {
 }
 
 export type Article = {
-	id: number
+	id: number | string
 	title: string
-	excerpt: string
-	date: string
+	excerpt?: string
+	date?: string
 	author?: string
 	readTime?: string
+	content?: string
+	createdAt?: string
 }
 
 export type PetalDensity = 'low' | 'medium' | 'high'
