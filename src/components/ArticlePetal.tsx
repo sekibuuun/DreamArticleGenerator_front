@@ -3,14 +3,16 @@ import { formatDate } from '@/lib/utils'
 import type { ArticlePetalProps } from '@/types/index'
 
 export const ArticlePetal = ({ id, article, index }: ArticlePetalProps) => {
-	useArticlePetal()
+	// 各カードごとに独自のホバー状態を管理
+	const { isHovered, setIsHovered } = useArticlePetal()
 	const delayClass = `delay-${index * 100}`
 
 	return (
 		<div
 			id={String(id)}
-			className={`bg-white rounded-lg overflow-hidden shadow-md animate-fadeIn transform transition-all duration-500 hover:-translate-y-2 hover:shadow-lg"
-${delayClass}`}
+			className={`relative bg-white rounded-lg overflow-hidden shadow-md animate-fadeIn transform transition-all duration-500 hover:-translate-y-2 hover:shadow-lg ${delayClass}`}
+			onMouseEnter={() => setIsHovered(true)}
+			onMouseLeave={() => setIsHovered(false)}
 		>
 			<div className="p-4">
 				<h2 className="text-xl font-bold text-gray-800 mb-2">
@@ -29,6 +31,15 @@ ${delayClass}`}
 					続きを読む
 				</button>
 			</div>
+
+			{/* コンポーネントの下部に表示される下線 */}
+			<div
+				className={`
+          absolute bottom-0 left-0 right-0 h-1 bg-pink-500
+          transition-transform duration-300 ease-in-out origin-left
+          ${isHovered ? 'scale-x-100' : 'scale-x-0'}
+        `}
+			/>
 		</div>
 	)
 }

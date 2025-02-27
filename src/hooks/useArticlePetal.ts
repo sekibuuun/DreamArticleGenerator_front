@@ -1,17 +1,10 @@
-import { animationAddPetal } from '@/lib/customAnimation'
-import { useEffect } from 'react'
+import { useState } from 'react'
 
 export const useArticlePetal = () => {
-	useEffect(() => {
-		const AddPetal = () => {
-			const existingStyle = document.getElementById('article-animations')
-			if (!existingStyle) {
-				const styleTag = document.createElement('style')
-				styleTag.id = 'article-animations'
-				styleTag.innerHTML = animationAddPetal()
-				document.head.appendChild(styleTag)
-			}
-		}
-		AddPetal()
-	}, [])
+	const [isHovered, setIsHovered] = useState<boolean>(false)
+
+	return {
+		isHovered,
+		setIsHovered,
+	}
 }
