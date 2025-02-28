@@ -1,6 +1,5 @@
 import type { Article } from '@/types/index'
 import { useEffect, useState } from 'react'
-import articlesData from '../data/articles.json'
 
 export const useArticleDetail = (id: string | undefined) => {
 	const [article, setArticle] = useState<Article | null>(null)
@@ -20,17 +19,14 @@ export const useArticleDetail = (id: string | undefined) => {
 				setError(null)
 
 				// JSONデータから該当するIDの記事を検索
-				const foundArticle = articlesData.articles.find((a) => a.id === id)
-
-				if (!foundArticle) {
+				const response = await fetch(`http://127.0.0.1:5000/api/article/${id}`)
+				if (!response.ok) {
 					// 記事が見つからない場合はエラーをセット
 					throw new Error('記事が見つかりませんでした')
 				}
 
-				// 遅延を模倣（実際のAPIフェッチを想定）
-				await new Promise((resolve) => setTimeout(resolve, 500))
-
-				setArticle(foundArticle)
+				const article: Article = await response.json()
+				setArticle(article)
 			} catch (fetchError) {
 				console.error('記事の取得に失敗しました:', fetchError)
 

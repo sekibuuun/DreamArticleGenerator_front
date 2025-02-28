@@ -1,5 +1,6 @@
 import { useArticleLists } from '@/hooks/useArticleLists'
 import type { ArticleListsProps } from '@/types/index'
+import { Link } from 'react-router'
 
 export const ArticleLists = ({
 	id,
@@ -24,12 +25,14 @@ export const ArticleLists = ({
 				<div className="flex flex-wrap text-xs text-gray-500 mb-4">
 					<span className="mr-1">{date}</span>
 				</div>
-				<button
-					type="button"
-					className="text-sm text-pink-600 font-medium hover:text-pink-800 transition-colors"
-				>
-					続きを読む
-				</button>
+				<Link to={`/article/${id}`}>
+					<button
+						type="button"
+						className="text-sm text-pink-600 font-medium hover:text-pink-800 transition-colors"
+					>
+						続きを読む
+					</button>
+				</Link>
 			</div>
 
 			{/* コンポーネントの下部に表示される下線 */}
