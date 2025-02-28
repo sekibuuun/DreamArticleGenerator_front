@@ -26,7 +26,6 @@ export const Chat = () => {
 		handleCloseArticleModal,
 		articleResponse,
 	} = useChat(chatId)
-	// 記事モーダルを閉じる処理
 
 	return (
 		<div className="relative min-h-screen bg-gradient-to-b from-pink-50 to-white overflow-hidden">
@@ -106,6 +105,7 @@ export const Chat = () => {
 
 				{/* 記事生成ボタン */}
 				<JudgeButton
+					isGenerating={isSubmitting}
 					isVisible={showGenerateButton}
 					onGenerateArticle={handleGenerateArticle}
 					onClose={handleGenerateAndCloseModal}
