@@ -1,8 +1,13 @@
 import { useArticleLists } from '@/hooks/useArticleLists'
-import { formatDate } from '@/lib/utils'
 import type { ArticleListsProps } from '@/types/index'
 
-export const ArticleLists = ({ id, article, index }: ArticleListsProps) => {
+export const ArticleLists = ({
+	id,
+	title,
+	index,
+	summary,
+	date,
+}: ArticleListsProps) => {
 	const { isHovered, setIsHovered } = useArticleLists()
 	const delayClass = `delay-${index * 100}`
 
@@ -14,14 +19,10 @@ export const ArticleLists = ({ id, article, index }: ArticleListsProps) => {
 			onMouseLeave={() => setIsHovered(false)}
 		>
 			<div className="p-4">
-				<h2 className="text-xl font-bold text-gray-800 mb-2">
-					{article.title}
-				</h2>
-				<p className="text-gray-600 text-sm mb-4 line-clamp-3">
-					{article.excerpt}
-				</p>
+				<h2 className="text-xl font-bold text-gray-800 mb-2">{title}</h2>
+				<p className="text-gray-600 text-sm mb-4 line-clamp-3">{summary}</p>
 				<div className="flex flex-wrap text-xs text-gray-500 mb-4">
-					<span className="mr-1">{formatDate(article.date as string)}</span>
+					<span className="mr-1">{date}</span>
 				</div>
 				<button
 					type="button"

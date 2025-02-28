@@ -1,13 +1,113 @@
 import { ArticleLists } from '@/components/ArticleLists'
 import { ChatButton } from '@/components/ChatButton'
 import { CherryBlossom } from '@/components/CherryBlossom'
-import { useArticles } from '@/hooks/useArticles'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { useScrollToTop } from '@/hooks/useScrollToTop'
+import { fetchArticles } from '@/lib/api'
+import type { Article } from '@/types'
 import type React from 'react'
+import { useEffect, useState } from 'react'
+
+// ローディング表示コンポーネント
+function LoadingSpinner() {
+	return (
+		<div className="flex justify-center items-center py-20">
+			<div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-pink-500" />
+		</div>
+	)
+}
+
+// エラー表示コンポーネント
+function ErrorDisplay({ error }: { error: Error }) {
+	return (
+		<div className="text-center py-10">
+			<div
+				className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded relative"
+				role="alert"
+			>
+				<strong className="font-bold">エラー: </strong>
+				<span className="block sm:inline">{error.message}</span>
+			</div>
+		</div>
+	)
+}
+
+// 記事コンテンツコンポーネント - useEffect を使用する従来のアプローチ
+function ArticlesContent() {
+	const [articles, setArticles] = useState<Article[]>([])
+	const [loading, setLoading] = useState(true)
+	const [error, setError] = useState<Error | null>(null)
+
+	useEffect(() => {
+		let isMounted = true
+
+		const loadArticles = async () => {
+			try {
+				const data = await fetchArticles()
+				if (isMounted) {
+					setArticles(data)
+					setLoading(false)
+				}
+			} catch (err) {
+				if (isMounted) {
+					setError(
+						err instanceof Error
+							? err
+							: new Error('記事の取得中にエラーが発生しました'),
+					)
+					setLoading(false)
+				}
+			}
+		}
+
+		loadArticles()
+
+		return () => {
+			isMounted = false
+		}
+	}, [])
+
+	if (loading) {
+		return <LoadingSpinner />
+	}
+
+	if (error) {
+		return <ErrorDisplay error={error} />
+	}
+
+	// 記事がない場合
+	if (!articles || articles.length === 0) {
+		return (
+			<div className="text-center py-10">
+				<div className="bg-pink-50 border border-pink-200 text-pink-700 px-4 py-6 rounded-lg shadow-sm">
+					<p className="text-lg font-medium">記事はありません</p>
+					<p className="mt-2 text-pink-600">
+						新しい記事が投稿されるまでお待ちください
+					</p>
+				</div>
+			</div>
+		)
+	}
+
+	return (
+		<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 relative">
+			{articles.map((article, index) => {
+				return (
+					<ArticleLists
+						key={article.id}
+						id={article.id as number}
+						title={article.title as string}
+						index={index}
+						summary={article.summary as string}
+						date={article.timestamp as string}
+					/>
+				)
+			})}
+		</div>
+	)
+}
 
 export function Articles(): React.ReactNode {
-	// カスタムフックを使用してデータとスクロール動作を取得
-	const { articles, loading, error } = useArticles()
 	useScrollToTop()
 
 	return (
@@ -24,39 +124,9 @@ export function Articles(): React.ReactNode {
 					</h1>
 				</div>
 
-				{/* ローディング表示 */}
-				{loading && (
-					<div className="flex justify-center items-center py-20">
-						<div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-pink-500" />
-					</div>
-				)}
-
-				{/* エラー表示 */}
-				{error && (
-					<div className="text-center py-10">
-						<div
-							className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded relative"
-							role="alert"
-						>
-							<strong className="font-bold">エラー: </strong>
-							<span className="block sm:inline">{error}</span>
-						</div>
-					</div>
-				)}
-
-				{/* 記事グリッド */}
-				{!loading && !error && (
-					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 relative">
-						{articles.map((article, index) => (
-							<ArticleLists
-								key={article.id}
-								id={article.id as number}
-								article={article}
-								index={index}
-							/>
-						))}
-					</div>
-				)}
+				<ErrorBoundary fallback={ErrorDisplay}>
+					<ArticlesContent />
+				</ErrorBoundary>
 			</div>
 			<ChatButton />
 		</div>
