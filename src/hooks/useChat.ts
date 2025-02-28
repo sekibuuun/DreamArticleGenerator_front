@@ -17,7 +17,6 @@ export const useChat = (chatId: number) => {
 	const [showGenerateButton, setShowGenerateButton] = useState<boolean>(false)
 	const [isArticlePreviewOpen, setIsArticlePreviewOpen] =
 		useState<boolean>(false)
-
 	const containerRef = useRef<HTMLDivElement | null>(null)
 	const messagesEndRef = useRef<HTMLDivElement | null>(null)
 
