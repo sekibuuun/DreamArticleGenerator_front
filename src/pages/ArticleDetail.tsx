@@ -61,7 +61,7 @@ export const ArticleDetail = () => {
 							</div>
 							<div className="flex items-center">
 								<Calendar className="h-4 w-4 mr-1" />
-								<span>{article.createdAt}</span>
+								<span>{article.timestamp}</span>
 							</div>
 						</div>
 					</div>
