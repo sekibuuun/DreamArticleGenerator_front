@@ -59,3 +59,19 @@ export type Message = {
 	role: 'user' | 'assistant'
 	content: string
 }
+
+export type ChatResponse = {
+	response: string
+}
+
+export type GenerateArticleResponse = {
+	id: number
+	title: string
+	content: string
+}
+
+export type ArticlePreviewProps = {
+	isOpen: boolean
+	onClose: () => void
+	articleResponse: GenerateArticleResponse | null
+}
