@@ -72,7 +72,7 @@ export type GenerateArticleResponse = {
 }
 
 export type ArticlePreviewProps = {
-	isOpen: boolean
+	isOpen?: boolean
 	onClose: () => void
 	articleResponse: GenerateArticleResponse | null
 }
