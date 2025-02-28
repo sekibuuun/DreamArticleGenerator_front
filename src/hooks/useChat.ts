@@ -1,8 +1,9 @@
-// useChat.ts
-import type { Message } from '@/types'
+import type { ChatResponse, GenerateArticleResponse, Message } from '@/types'
 import { useRef, useState } from 'react'
+import { useNavigate } from 'react-router'
 
 export const useChat = (chatId: number) => {
+	const navigate = useNavigate()
 	const initialMessages: Message[] = [
 		{
 			id: chatId,
@@ -14,9 +15,15 @@ export const useChat = (chatId: number) => {
 	const [input, setInput] = useState<string>('')
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
 	const [showGenerateButton, setShowGenerateButton] = useState<boolean>(false)
-
+	const [isArticlePreviewOpen, setIsArticlePreviewOpen] =
+		useState<boolean>(false)
 	const containerRef = useRef<HTMLDivElement | null>(null)
 	const messagesEndRef = useRef<HTMLDivElement | null>(null)
+
+	const [articleResponse, setArticleResponse] =
+		useState<GenerateArticleResponse | null>(null)
+
+	const waitTime: number = 2000
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setInput(e.target.value)
@@ -52,7 +59,7 @@ export const useChat = (chatId: number) => {
 				throw new Error('Failed to send message')
 			}
 
-			const data = await response.json()
+			const data: ChatResponse = await response.json()
 
 			// Add AI response to the state
 			setMessages((prev) => [
@@ -70,7 +77,7 @@ export const useChat = (chatId: number) => {
 				if (messages.length >= 4) {
 					setShowGenerateButton(true)
 				}
-			}, 3000)
+			}, waitTime)
 		} catch (error) {
 			console.error('Error sending message:', error)
 			// Handle error (maybe add an error message to the chat)
@@ -84,12 +91,11 @@ export const useChat = (chatId: number) => {
 	}
 
 	const handleGenerateArticle = async () => {
-		// Generate article using the chatId
 		try {
 			const response = await fetch(
-				`http://127.0.0.1:5000/api/chat/${chatId}/generate`,
+				`http://127.0.0.1:5000/api/article/generate/${chatId}`,
 				{
-					method: 'POST',
+					method: 'GET',
 				},
 			)
 
@@ -97,10 +103,13 @@ export const useChat = (chatId: number) => {
 				throw new Error('Failed to generate article')
 			}
 
-			const data = await response.json()
+			const data: GenerateArticleResponse = await response.json()
 
-			// Handle the generated article (e.g., redirect to article page)
-			window.location.href = `/article/${data.articleId}`
+			console.log('Generated article:', data)
+			setShowGenerateButton(false)
+			setIsArticlePreviewOpen(true)
+			setArticleResponse(data)
+			return data
 		} catch (error) {
 			console.error('Error generating article:', error)
 		}
@@ -109,6 +118,11 @@ export const useChat = (chatId: number) => {
 	const handleGenerateAndCloseModal = () => {
 		handleGenerateArticle()
 		setShowGenerateButton(false)
+	}
+
+	const handleCloseArticleModal = () => {
+		setIsArticlePreviewOpen(false)
+		navigate('/')
 	}
 
 	return {
@@ -122,5 +136,8 @@ export const useChat = (chatId: number) => {
 		showGenerateButton,
 		handleGenerateArticle,
 		handleGenerateAndCloseModal,
+		isArticlePreviewOpen,
+		handleCloseArticleModal,
+		articleResponse,
 	}
 }

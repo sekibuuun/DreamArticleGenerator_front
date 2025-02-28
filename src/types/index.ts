@@ -39,6 +39,7 @@ export type ArticleListsProps = {
 }
 
 export type JudgeButtonProps = {
+	isGenerating: boolean
 	isVisible: boolean
 	onGenerateArticle: () => void
 	onClose: () => void
@@ -58,4 +59,20 @@ export type Message = {
 	id: number
 	role: 'user' | 'assistant'
 	content: string
+}
+
+export type ChatResponse = {
+	response: string
+}
+
+export type GenerateArticleResponse = {
+	id: number
+	title: string
+	content: string
+}
+
+export type ArticlePreviewProps = {
+	isOpen: boolean
+	onClose: () => void
+	articleResponse: GenerateArticleResponse | null
 }

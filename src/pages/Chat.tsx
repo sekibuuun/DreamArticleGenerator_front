@@ -1,3 +1,4 @@
+import { ArticlePreview } from '@/components/ArticlePreview'
 import { JudgeButton } from '@/components/JudgeButton'
 import { MessageBubble } from '@/components/MessageBubble'
 import { Button } from '@/components/ui/button'
@@ -21,7 +22,10 @@ export const Chat = () => {
 		showGenerateButton,
 		handleGenerateArticle,
 		handleGenerateAndCloseModal,
-	} = useChat(chatId) // Pass the chatId to the hook
+		isArticlePreviewOpen,
+		handleCloseArticleModal,
+		articleResponse,
+	} = useChat(chatId)
 
 	return (
 		<div className="relative min-h-screen bg-gradient-to-b from-pink-50 to-white overflow-hidden">
@@ -101,11 +105,18 @@ export const Chat = () => {
 
 				{/* 記事生成ボタン */}
 				<JudgeButton
+					isGenerating={isSubmitting}
 					isVisible={showGenerateButton}
 					onGenerateArticle={handleGenerateArticle}
 					onClose={handleGenerateAndCloseModal}
 				/>
 			</div>
+
+			<ArticlePreview
+				isOpen={isArticlePreviewOpen}
+				onClose={handleCloseArticleModal}
+				articleResponse={articleResponse}
+			/>
 		</div>
 	)
 }
