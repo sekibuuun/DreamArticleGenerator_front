@@ -39,6 +39,7 @@ export type ArticleListsProps = {
 }
 
 export type JudgeButtonProps = {
+	isGenerating: boolean
 	isVisible: boolean
 	onGenerateArticle: () => void
 	onClose: () => void

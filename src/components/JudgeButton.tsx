@@ -13,6 +13,7 @@ import { Sparkles } from 'lucide-react'
 import type React from 'react'
 
 export const JudgeButton: React.FC<JudgeButtonProps> = ({
+	isGenerating,
 	isVisible,
 	onGenerateArticle,
 	onClose,
@@ -46,6 +47,7 @@ export const JudgeButton: React.FC<JudgeButtonProps> = ({
 						className="bg-gradient-to-br from-pink-500 to-pink-600 
                        text-white shadow-lg hover:from-pink-600 hover:to-pink-700 
                        transition-all duration-300 px-6 py-5 rounded-full"
+						disabled={isGenerating}
 					>
 						<Sparkles className="w-5 h-5 mr-2" />
 						記事を生成する
