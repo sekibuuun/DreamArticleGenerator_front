@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react'
+
 export type MessageBubbleProps = {
 	message: string
 	role: 'user' | 'assistant'
@@ -13,6 +15,8 @@ export type Article = {
 	readTime?: string
 	content?: string
 	createdAt?: string
+	timestamp?: string
+	summary?: string
 }
 
 export type PetalDensity = 'low' | 'medium' | 'high'
@@ -36,6 +40,8 @@ export type ArticleListsProps = {
 	id: number
 	article: Article
 	index: number
+	summary: string
+	date: string
 }
 
 export type JudgeButtonProps = {
@@ -75,4 +81,20 @@ export type ArticlePreviewProps = {
 	isOpen?: boolean
 	onClose: () => void
 	articleResponse: GenerateArticleResponse | null
+}
+
+export type ErrorBoundaryProps = {
+	children: ReactNode
+	fallback: React.ComponentType<{ error: Error }>
+}
+
+export type ErrorBoundaryState = {
+	hasError: boolean
+	error: Error | null
+}
+
+export interface PromiseWithStatus<T> extends Promise<T> {
+	status?: 'pending' | 'fulfilled' | 'rejected'
+	value?: T
+	reason?: Error | unknown
 }
