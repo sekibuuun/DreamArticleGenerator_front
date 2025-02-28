@@ -38,7 +38,7 @@ export type Petal = {
 
 export type ArticleListsProps = {
 	id: number
-	article: Article
+	title: string
 	index: number
 	summary: string
 	date: string
